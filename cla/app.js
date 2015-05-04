@@ -39,3 +39,9 @@ var httpsServer = https.createServer(credentials, app).listen(SSL_PORT);
 /** Routes */
 app.get('/', routes.index);
 app.get('/users', user.list);
+
+/** Utility */
+function randomValidationID() {
+	return crypto.randomBytes(64).toString('base64');
+}
+
