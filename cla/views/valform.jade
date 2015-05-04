@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1 User Validation Form
+  form(method='POST')
+    p= firstname
+    p= lastname
+
+    input(type='hidden', name='pid', value='#{pid}')
+
+    label date of birth (01/23/1994)
+    br
+    input(type='text', name='dob')
+    br
+    br
+    
+    label ssn 
+    br
+    input(type='text', name='ssn')
+    br
+    br
+
+    input(type='submit', value='submit')

@@ -6,18 +6,17 @@ use comp_sec_cla;
 
 CREATE TABLE People(
 	pid INT NOT NULL AUTO_INCREMENT,
-	firstname CHAR(100), # NULL username indicates a deleted user
-	lastname CHAR(100), # NULL username indicates a deleted user
-	dob CHAR(10),
-	ssn CHAR(10),
+	firstname CHAR(100) NOT NULL, # NULL username indicates a deleted user
+	lastname CHAR(100) NOT NULL, # NULL username indicates a deleted user
+	dob CHAR(10) NOT NULL,
+	ssn CHAR(10) NOT NULL,
 	eligible BOOLEAN DEFAULT false NOT NULL,
 	PRIMARY KEY (pid)
 ) ENGINE = INNODB;
 
 CREATE TABLE VotingIntent (
 	pid INT NOT NULL,
-	intent BOOLEAN DEFAULT false NOT NULL,
-	validationid CHAR(88), #512 bit base64 encoded string
+	validationid CHAR(88) NOT NULL, #512 bit base64 encoded string
 	PRIMARY KEY (pid)
 ) ENGINE = INNODB;
 

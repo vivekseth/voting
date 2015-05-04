@@ -15,6 +15,8 @@ var mysql = require('mysql');
 /** User Includes */
 var routes = require('./routes');
 var user = require('./routes/user');
+var CONSTANTS = require('../constants').constants;
+var IndexController = require('./controllers/IndexController');
 
 /** App Setup */
 var app = express();
@@ -37,14 +39,16 @@ var certificate = fs.readFileSync(SSL_CERT, 'utf8');
 var credentials = {key: privateKey, cert: certificate};
 var httpsServer = https.createServer(credentials, app).listen(SSL_PORT);
 
+/** MySQL Setup*/
+var connection = mysql.createConnection({
+	host: CONSTANTS.host,
+	user: CONSTANTS.user,
+	password: CONSTANTS.password,
+	database: CONSTANTS.cla_database
+});
+connection.connect();
+
 /** Routes */
-app.get('/', routes.index);
-app.get('/users', user.list);
-
-/** Utility */
-function randomValidationID() {
-	return crypto.randomBytes(64).toString('base64');
-}
-
+IndexController.registerRoutes(app, connection);
 
 
