@@ -10,6 +10,7 @@ var path = require('path');
 var http = require('http');
 var https = require('https');
 var express = require('express');
+var mysql = require('mysql');
 
 /** User Includes */
 var routes = require('./routes');
@@ -44,4 +45,6 @@ app.get('/users', user.list);
 function randomValidationID() {
 	return crypto.randomBytes(64).toString('base64');
 }
+
+
 
